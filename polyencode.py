@@ -18,16 +18,16 @@ preshiftDecode.update({24:'X',25:'Y',0:'Z'})
 def wordEncode(word):
 
     wordArray = word.upper().split(' ')
-    newWordArray = []
+    encWordArray = []
 
     for word in wordArray:
         ltrArray = list(word)
-        newltrArray = []
+        encLtrArray = []
         if len(ltrArray) < 2:
             ltrDec = preshiftDecode[abs(0)]
-            newltrArray.append(ltrDec)
-            encodedWord = ''.join(newltrArray)
-            newWordArray.append(encodedWord)
+            encLtrArray.append(ltrDec)
+            encodedWord = ''.join(encLtrArray)
+            encWordArray.append(encodedWord)
             continue
         ltrpos = 0
         for ltr in ltrArray:
@@ -47,12 +47,12 @@ def wordEncode(word):
                 nxtltr = preshiftEncode[ltrArray[arrayPos]]
                 newltr = int(curltr) - int(nxtltr)
                 ltrDec = preshiftDecode[abs(newltr)]
-            newltrArray.append(ltrDec)
+            encLtrArray.append(ltrDec)
             ltrpos = ltrpos+1
 
-        encodedWord = ''.join(newltrArray)
-        newWordArray.append(encodedWord)
-    print newWordArray
+        encodedWord = ''.join(encLtrArray)
+        encWordArray.append(encodedWord)
+    print encWordArray
 
 
 word = sys.argv[1]
