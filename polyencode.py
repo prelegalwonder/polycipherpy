@@ -17,7 +17,7 @@ preshiftEncode.update({'X':89,'Y':97,'Z':101})
 
 # For all intents, wordEncode is the algorithm. This
 # algorithm takes the value of the current letter in
-# preshiftencode and multiples it by the value of the
+# preshiftencode and multiplies it by the value of the
 # next letter in the array to arrive at a semiprime
 # for the current letter. Rinse and repeat.
 
@@ -31,17 +31,27 @@ def wordEncode(word):
         encLtrArray = []
         ltrpos = 0
         for ltr in ltrArray:
+            # in the event of a single letter word,
+            # multiply by a unique prime outside of
+            # the assigned matrix for easier factoring
+            # in the reassembly.
             if len(ltrArray) < 2:
                 curltr = preshiftEncode[ltr]
                 newltr = int(curltr) * 103
+            # is letter first pos in word?
+            # if so use next letter for multiplier
             elif ltr == ltrArray[0]:
                 curltr = preshiftEncode[ltr]
                 nxtltr = preshiftEncode[ltrArray[1]]
                 newltr = int(curltr) * int(nxtltr)
+            # is letter last pos in word?
+            # if so use first letter for multiplier
             elif ltr == ltrArray[-1]:
                 curltr = preshiftEncode[ltr]
                 fstltr = preshiftEncode[ltrArray[0]]
                 newltr = int(curltr) * int(fstltr)
+            # is letter in the middle?
+            # if so use ident next letter
             else:
                 arrayPos = ltrpos + 1
                 curltr = preshiftEncode[ltr]
