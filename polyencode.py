@@ -51,7 +51,7 @@ def wordEncode(word):
                 fstltr = preshiftEncode[ltrArray[0]]
                 newltr = int(curltr) * int(fstltr)
             # is letter in the middle?
-            # if so use ident next letter
+            # if so identify next letter
             else:
                 arrayPos = ltrpos + 1
                 curltr = preshiftEncode[ltr]
